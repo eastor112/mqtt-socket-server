@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cliente MQTT</title>
+</head>
+<body>
+  <h1>Cliente MQTT</h1>
+  <div id="mqtt-data" style='font-size: 20px; font: weigh 32px;'></div>
+
+  <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+  <script>
+    const socket = io("http://localhost:3000", {
+      withCredentials: false,
+      extraHeaders: {
+        "my-custom-header": "abcd"
+      }
+    });
+
+    socket.on('mqtt-message', (data) => {
+      console.log('evento gaaaa!', data);
+      const mqttDataElement = document.getElementById('mqtt-data');
+      mqttDataElement.textContent = data;
+    });
+
+  </script>
+</body>
+</html>
